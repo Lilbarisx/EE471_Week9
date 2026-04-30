@@ -1,0 +1,33 @@
+EE471 – Modern Software Dev.                                                                      30/04/2026 
+ 
+Izmir Institute of Technology 
+Electrical and Electronics Eng. Dep. 
+ 
+EE 471 Modern Software Development 
+Practices and Technologies 
+In-class exercise Week #9 
+Thursday 30/04/2026 
+Preliminary Task: Study the shared course materials Mediapipe solutions 
+__________________________________________________________________________________________ 
+Task 1: Choose 3 of the following vision tasks: Object detection, Image classification, Image 
+segmentation, Hand landmark detection, Face landmark detection, and Pose landmark detection 
+Read through their documentation, and demonstrate them in Python.  
+Deliverables (Deadline: end of the lecture): 
+1) The link for your public github repository 
+2) A screen recording video demonstrating each of the tasks 
+3) (Bonus) Complete all 6 of the tasks. 
+__________________________________________________________________________________________ 
+Task 2: Use a pose estimation library (e.g. mediapipe) to detect body pose in a given image, and 
+write a script to classify which arm is up. Using Docker/cog containerize it. 
+Input: $PATH-TO-INPUT-IMAGE, Output: “left”, “right”, “both” or “None”  
+Test your script with 3 input images provided: pose-1.jpg, pose-2.jpg, and pose-3.jpg.  
+Task 3: Use a face detection library (e.g. mediapipe) to detect the face's looking direction in a 
+given image, and write a script to classify if the face is looking towards left, right, or straight. Using 
+Docker/cog containerize it. 
+Input: $PATH-TO-INPUT-IMAGE, Output: “left”, “right”, or “straight”  
+Test your script with 3 input images provided: face-1.png, face-2.png, and face-3.png.  
+Deliverables (Deadline: until midnight):  
+1) The link for your public github repository  
+2) A screen recording video demonstrating each of the tasks 
+3) A screen recording video with you explaining the purpose of each of the code blocks used 
+(line by line not needed, but still try to explain thoroughly). 

@@ -1,0 +1,10 @@
+build:
+  gpu: false
+  python_version: "3.10"
+  system_packages:
+    - "libgl1-mesa-glx"
+    - "libglib2.0-0"
+  python_packages:
+    - "mediapipe==0.10.11"
+    - "opencv-python-headless==4.9.0.80"
+predict: "predict.py:Predictor"

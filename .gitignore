@@ -1,0 +1,5 @@
+video_kilavuzu.txt
+__pycache__/
+*.pyc
+venv/
+.venv/
