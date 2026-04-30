@@ -4,10 +4,22 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 import argparse
+import os
+import sys
 
 TEXT_COLOR = (0, 255, 0)
 POINT_COLOR = (0, 255, 255)
 LINE_COLOR = (255, 0, 255)
+
+# Default sample image for each task (downloaded by download_models.py)
+DEFAULT_IMAGES = {
+    "object":         "samples/object_detection.jpg",
+    "classification": "samples/classification.jpg",
+    "segmentation":   "samples/segmentation.jpg",
+    "hand":           "samples/hand.jpg",
+    "face":           "samples/face.jpg",
+    "pose":           "samples/pose.jpg",
+}
 
 def draw_landmarks_manual(image, landmarks, connections=None):
     """Draw landmarks and connections manually using OpenCV."""
@@ -168,7 +180,8 @@ def pose_landmarks(image_path):
 # --------------------------------------------------------------------------- #
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="MediaPipe Vision Tasks Demo")
-    parser.add_argument("--image", required=True, help="Path to input image")
+    parser.add_argument("--image", required=False, default=None,
+                        help="Path to input image (optional - uses task-specific default if omitted)")
     parser.add_argument("--task", required=True,
                         choices=["object","classification","segmentation","hand","face","pose","all"],
                         help="Task to perform")
@@ -186,7 +199,13 @@ if __name__ == "__main__":
     run_tasks = list(tasks.items()) if args.task == "all" else [(args.task, tasks[args.task])]
 
     for name, func in run_tasks:
-        result_img = func(args.image)
+        # Use provided image or fall back to task-specific default
+        image_path = args.image if args.image else DEFAULT_IMAGES[name]
+        if not os.path.exists(image_path):
+            print(f"  [ERROR] Image not found: {image_path}")
+            print(f"  Run 'py download_models.py' first to download sample images.")
+            sys.exit(1)
+        result_img = func(image_path)
         display = cv2.cvtColor(result_img, cv2.COLOR_RGB2BGR)
         window_title = f"MediaPipe - {name.upper()}"
         cv2.imshow(window_title, display)

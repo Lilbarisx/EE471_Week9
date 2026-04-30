@@ -10,14 +10,39 @@ MODELS = {
     "pose_landmarker.task": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_heavy/float16/1/pose_landmarker_heavy.task"
 }
 
-os.makedirs("models", exist_ok=True)
+# Official MediaPipe sample images - one per task
+SAMPLE_IMAGES = {
+    "samples/object_detection.jpg": "https://storage.googleapis.com/mediapipe-tasks/object_detector/cat_and_dog.jpg",
+    "samples/classification.jpg":   "https://storage.googleapis.com/mediapipe-tasks/image_classifier/burger.jpg",
+    "samples/segmentation.jpg":     "https://storage.googleapis.com/mediapipe-assets/portrait.jpg",
+    "samples/hand.jpg":             "https://storage.googleapis.com/mediapipe-tasks/hand_landmarker/woman_hands.jpg",
+    "samples/face.jpg":             "https://storage.googleapis.com/mediapipe-assets/portrait.jpg",
+    "samples/pose.jpg":             "https://storage.googleapis.com/mediapipe-assets/image.jpg",
+}
 
+os.makedirs("models", exist_ok=True)
+os.makedirs("samples", exist_ok=True)
+
+print("=== Downloading models ===")
 for name, url in MODELS.items():
     path = os.path.join("models", name)
     if not os.path.exists(path):
-        print(f"Downloading {name}...")
+        print(f"  Downloading {name}...")
         urllib.request.urlretrieve(url, path)
-        print(f"Downloaded {name}.")
+        print(f"  [OK] {name}")
     else:
-        print(f"{name} already exists.")
-print("All models downloaded successfully!")
+        print(f"  [OK] {name} (already exists)")
+
+print("\n=== Downloading sample images ===")
+for path, url in SAMPLE_IMAGES.items():
+    if not os.path.exists(path):
+        print(f"  Downloading {path}...")
+        try:
+            urllib.request.urlretrieve(url, path)
+            print(f"  [OK] {path}")
+        except Exception as e:
+            print(f"  [FAIL] Could not download {path}: {e}")
+    else:
+        print(f"  [OK] {path} (already exists)")
+
+print("\nAll done! Ready to run task1_demo.py")
