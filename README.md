@@ -19,7 +19,7 @@ To run Task 1, you need to set up a Python environment and download the necessar
 1. Open a terminal in the `Task1_Vision` directory.
 2. Create and activate a virtual environment (optional but recommended):
    ```bash
-   python -m venv venv
+   py -m venv venv
    # Windows:
    .\venv\Scripts\activate
    # macOS/Linux:
@@ -31,7 +31,7 @@ To run Task 1, you need to set up a Python environment and download the necessar
    ```
 4. Download the required model bundles:
    ```bash
-   python download_models.py
+   py download_models.py
    ```
 
 ### Execution
@@ -40,7 +40,7 @@ You can run the script on any image. Use `--task` to choose a specific task (`ob
 
 ```bash
 # Example usage:
-python task1_demo.py --image path/to/your/image.jpg --task all
+py task1_demo.py --image path/to/your/image.jpg --task all
 ```
 *(If you need a quick test image, you can copy one of the `pose-1.jpg` or `face-1.png` files from the other folders).*
 
@@ -83,6 +83,6 @@ cog predict -i image=@face-3.png
 ## 🎥 Deliverables Guide
 - **Code:** You can push this directory to your GitHub repository.
 - **Videos:** 
-  1. Record a video demonstrating Task 1 (`python task1_demo.py --image ... --task all`).
+  1. Record a video demonstrating Task 1 (`py task1_demo.py --image ... --task all`).
   2. Record a video demonstrating Task 2 and Task 3 running via `cog predict`.
   3. Record an explanation video where you go through the Python scripts (`task1_demo.py`, `predict.py` in Task 2 & 3) and explain the logic used (e.g., comparing wrist vs shoulder y-coordinates for Task 2, comparing nose tip position relative to face width for Task 3).
